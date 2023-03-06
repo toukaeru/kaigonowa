@@ -25,17 +25,20 @@
             <% if customer_signed_in? %>
             </ul>
             <ul class="navbar-nav ml-auto">
-              <li class="nav-item">
-               <%= link_to 'マイページ', customers_path, class: 'btn btn-outline-dark' %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "カテゴリ", categorys_path, class: 'btn btn-outline-dark' %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "新規投稿", new_post_path, class: 'btn btn-outline-dark' %>
-            </li>
-              <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'btn btn-outline-dark' %>
-            </li>
+             <li class="nav-item">
+               <%= link_to 'マイページ', customer_path(current_customer.id), class: 'btn btn-outline-dark' %>
+             </li>
+             <li class="nav-item">
+               <%= link_to 'ユーザー', customers_path, class: 'btn btn-outline-dark' %>
+             </li>
+             <li class="nav-item">
+               <%= link_to "カテゴリ", categorys_path, class: 'btn btn-outline-dark' %>
+             </li>
+             <li class="nav-item">
+               <%= link_to "新規投稿", new_post_path, class: 'btn btn-outline-dark' %>
+             </li>
+               <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'btn btn-outline-dark' %>
+             </li>
             <% elsif admin_signed_in?%>
              <li><%= link_to ' 会員一覧', admin_customers_path, class: 'btn btn-outline-dark' %>
              </li>

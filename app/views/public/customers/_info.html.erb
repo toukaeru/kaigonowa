@@ -1,0 +1,21 @@
+<div class ="col-md-3">
+      <h2>ユーザー情報</h2>
+      <%= image_tag @customer.get_profile_image(100, 100) %>
+      <table class = "table">
+        <tbody>
+         <tr>
+          <th>名前</th>
+          <th><%= @customer.name %></th>
+         </tr>
+         <tr>
+           <th>紹介文</th>
+           <th><%= @customer.introduction %></th>
+         </tr>
+        </tbody>
+      </table>
+      <div class = "row">
+       <%= link_to edit_customer_path(@customer.id), class: "btn btn-outline-secondary btn-block" do %>
+        <i class ="fas fa-user-cog"></i>
+       <% end %>
+      </div>
+    </div>
