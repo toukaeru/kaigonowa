@@ -19,7 +19,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
  end
 
   namespace :admin do
-    root to:"homes#top"
+    root to:"customers#index"
     resources :homes, only: [:top]
     resources :customers, only: [:index, :show, :edit, :update]
     resources :posts, only: [:index, :show, :edit, :update, :destroy]

@@ -1,9 +1,11 @@
 class Public::PostsController < ApplicationController
+  before_action :is_matching_login_customer, only: [:edit, :update, :destroy]
   def new
     @post = Post.new
   end
 
   def index
+    @categories = Category.all
   end
 
   def show
@@ -31,5 +33,12 @@ class Public::PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:title, :content, :category)
+  end
+  
+  def is_matching_login_customer
+    @post = Post.find(params[:id])
+    unless @post.customer == current_customer
+      redirect_to posts_path
+    end
   end
 end

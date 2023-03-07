@@ -1,2 +1,25 @@
-<h1>Public::Posts#index</h1>
-<p>Find me in app/views/public/posts/index.html.erb</p>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-sm-12 col-md-8 col-lg-5 px-sm-0 mx-auto">
+      <h1>カテゴリ一覧</h1>
+      <br>
+      <% @categories.each_slice(4) do |categories| %>
+      <div class="row">
+        <% categories.each do |category| %>
+      <div class="col-md-3">
+        <%= category.categorie_name %>
+      </div>
+       <% end %>
+      </div>
+
+      <% category.posts.each do |post| %>
+       <h1><%= post.categorie_name %>最新投稿一覧</h1>
+        <div class="post">
+        <h2><%= post.title %></h2>
+        <p><%= post.content.truncate(length: 10) %></p>
+       </div>
+      <% end %>
+    <% end %>
+   </div>
+  </div>
+</div>
