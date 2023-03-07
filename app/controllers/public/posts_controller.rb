@@ -5,18 +5,21 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @categories = Category.all
+    @categorys = Category.all
+    @posts = Post.all
   end
 
   def show
   end
 
   def create
-     @post = Post.new(post_params)
+    @post = Post.new(post_params)
+    @post.customer_id =  current_customer.id
     if @post.save
-     redirect_to @post
+      flash[:notice] = '投稿が完了しました'
+      redirect_to posts_path
     else
-      render 'new'
+      render :new
     end
   end
 
@@ -32,9 +35,9 @@ class Public::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :content, :category)
+    params.require(:post).permit(:title, :content, :category_id)
   end
-  
+
   def is_matching_login_customer
     @post = Post.find(params[:id])
     unless @post.customer == current_customer

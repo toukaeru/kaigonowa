@@ -3,23 +3,30 @@
     <div class="col-sm-12 col-md-8 col-lg-5 px-sm-0 mx-auto">
       <h1>カテゴリ一覧</h1>
       <br>
-      <% @categories.each_slice(4) do |categories| %>
       <div class="row">
-        <% categories.each do |category| %>
-      <div class="col-md-3">
-        <%= category.categorie_name %>
+        <% @categorys.each do |category| %>
+          <div class="col-md-3">
+            ・<%= link_to category.category_name, categorys_path(category_id: category.id) %>
+          </div>
+        <% end %>
       </div>
-       <% end %>
-      </div>
+    </div>
+  </div>
+</div>
 
-      <% category.posts.each do |post| %>
-       <h1><%= post.categorie_name %>最新投稿一覧</h1>
-        <div class="post">
-        <h2><%= post.title %></h2>
-        <p><%= post.content.truncate(length: 10) %></p>
-       </div>
-      <% end %>
-    <% end %>
-   </div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-center">投稿一覧</h1>
+      <br>
+      <div class="row">
+        <% @posts.each do |post| %>
+          <div class="col-md-6">
+            <h2><%= link_to post.title, post %></h2>
+            <p><%= post.content %></p>
+          </div>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>
