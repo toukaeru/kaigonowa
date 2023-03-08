@@ -11,11 +11,15 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
  scope module: :public do
    root to:  "homes#top"
    resources :homes, only: [:top, :about]
-   resources :customers, only: [:index, :show, :edit, :update]
-   resources :posts, only: [:new, :index, :show, :edit, :create, :update, :destroy]
+   resources :customers, only: [:index, :show, :edit, :update] do
+    get "unsubscribe"
+    patch "withdrawal"
+  end
+   resources :posts, only: [:new, :index, :show, :edit, :create, :update, :destroy] do
+       resource :likes, only: [:create, :destroy]
+       resources :comments, only: [:create, :destroy]
+   end
    resources :categorys, only: [:index, :edit, :create, :update]
-   resources :likes, only: [:create, :destroy]
-   resources :comments, only: [:create, :destroy]
  end
 
   namespace :admin do

@@ -14,8 +14,8 @@
         <tbody>
           <% @posts.each do |post| %>
           <tr>
-            <th><%= link_to post.title, post_path(post.in) %> </th>
-            <th><%= post.content.truncate(length: 10) %></th>
+            <th><%= link_to post.title, post_path(post.id) %> </th>
+            <th><%= post.content %></th>
           </tr>
           <% end %>
         </tbody>

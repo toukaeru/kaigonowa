@@ -4,5 +4,9 @@ class Post < ApplicationRecord
   belongs_to :customer
   belongs_to :category
 
+  def liked_by?(customer)
+    likes.exists?(customer_id: customer.id)
+  end
+
 
 end
