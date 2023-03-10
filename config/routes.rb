@@ -26,9 +26,10 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     root to:"customers#index"
     resources :homes, only: [:top]
     resources :customers, only: [:index, :show, :edit, :update]
-    resources :posts, only: [:index, :show, :edit, :update, :destroy]
+    resources :posts, only: [:index, :show, :edit, :update, :destroy] do
+     resources :comments, only: [:index, :show, :edit, :update, :destroy]
+    end
     resources :categorys, only: [:index, :edit, :create, :update, :destroy]
-    resources :comments, only: [:index, :show, :edit, :update, :destroy]
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

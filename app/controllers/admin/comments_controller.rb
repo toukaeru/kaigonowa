@@ -1,8 +1,9 @@
 class Admin::CommentsController < ApplicationController
-  before_action :set_post
-  before_action :set_comment, only: [:destroy]
-  
+  before_action :set_post, only: [:create]
+  # before_action :set_comment, only: [:destroy]
+
    def create
+    @post = Post.find(params[:post_id])
     @comment = @post.comments.new(comment_params)
     @comment.customer = current_customer
 
@@ -14,23 +15,23 @@ class Admin::CommentsController < ApplicationController
    end
 
   def destroy
-    @comment.destroy
-    redirect_to @post, notice: 'コメントを削除しました。'
+    Comment.find(params[:id]).destroy
+    redirect_to request.referer, notice: 'コメントを削除しました。'
   end
 
   private
 
   def set_post
-    @post = Post.find(params[:post_id])
+    @post = Post.find(params[:id])
   end
 
   def set_comment
-    @comment = @post.comments.find(params[:id])
+    @post = Post.find(params[:id])
+    @comment = @post.comments
   end
 
   def comment_params
     params.require(:comment).permit(:content)
   end
 end
-  
-  
+

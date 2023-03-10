@@ -5,8 +5,8 @@ class Post < ApplicationRecord
   belongs_to :category
 
   def liked_by?(customer)
-    likes.exists?(customer_id: customer.id)
-  end
+  likes&.exists?(customer_id: customer.id) if customer.present? && likes.present?
+end
 
 
 end
