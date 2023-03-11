@@ -4,9 +4,10 @@ class Post < ApplicationRecord
   belongs_to :customer
   belongs_to :category
 
-  def liked_by?(customer)
-  likes&.exists?(customer_id: customer.id) if customer.present? && likes.present?
-end
+  scope :search_by_keyword, -> (keyword) { where("title LIKE ?", "%#{keyword}%") }
 
+  def liked_by?(customer)
+    likes&.exists?(customer_id: customer.id) if customer.present? && likes.present?
+  end
 
 end

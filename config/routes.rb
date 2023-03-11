@@ -8,6 +8,10 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   sessions: "admin/sessions"
 }
 
+devise_scope :customer do
+    post 'customers/guest_sign_in', to: 'public/sessions#guest_sign_in'
+  end
+
  scope module: :public do
    root to:  "homes#top"
    resources :homes, only: [:top, :about]
@@ -18,6 +22,9 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
    resources :posts, only: [:new, :index, :show, :edit, :create, :update, :destroy] do
        resource :likes, only: [:create, :destroy]
        resources :comments, only: [:create, :destroy]
+    collection do
+      get 'search'
+    end
    end
    resources :categorys, only: [:index, :edit, :create, :update]
  end
