@@ -1,5 +1,6 @@
 class Public::CustomersController < ApplicationController
   before_action :is_matching_login_customer, only: [:edit, :update]
+  before_action :set_customer, only: [:likes]
 
   def index
     @customers = Customer.all
@@ -37,6 +38,11 @@ class Public::CustomersController < ApplicationController
     flash[:notice] = "退会が完了しました！"
     redirect_to root_path
   end
+  
+  def likes
+    likes = Like.where(customer_id: @customer.id).pluck(:post_id)
+    @like_posts = Post.find(likes)
+  end
 
   private
 
@@ -49,5 +55,9 @@ class Public::CustomersController < ApplicationController
     unless customer_id == current_customer.id
       redirect_to customer_path(current_customer.id)
     end
+  end
+  
+  def set_customer
+    @customer = Customer.find(params[:id])
   end
 end

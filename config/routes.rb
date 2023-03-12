@@ -20,6 +20,9 @@ devise_scope :customer do
    resources :customers, only: [:index, :show, :edit, :update] do
     get "unsubscribe"
     patch "withdrawal"
+    member do
+        get :likes
+    end
     resource :relationships, only: [:create, :destroy] do
         collection do
             get 'followings' => 'relationships#followings', as: 'followings'

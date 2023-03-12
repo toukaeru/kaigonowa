@@ -1,21 +1,38 @@
-<h1 id="room" data-room="<%= @room.id %>" data-customer="<%= current_customer.id %>">
-<%= @customer.name %> さんとのチャット</h1>
-
-<div class="message" style="width: 400px;">
-  <% @chats.each do |chat| %>
-    <% if chat.customer_id == current_customer.id %>
-      <p style="text-align: right;"><%= chat.message %></p>
-    <% else %>
-      <p style="text-align: left;"><%= chat.message %></p>
-    <% end %>
-  <% end %>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">
+          <h2 class="text-center"><%= @customer.name %> さんとのチャット</h2>
+        </div>
+        <div class="card-body message">
+          <% @chats.each do |chat| %>
+            <% if chat.customer_id == current_customer.id %>
+              <p class="text-right text-primary"><%= chat.message %></p>
+            <% else %>
+              <p class="text-left"><%= chat.message %></p>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="card-footer">
+          <div class="row justify-content-center">
+            <div class="col-md-8">
+              <div class="errors">
+                <%= render "layouts/errors", obj: @chat %>
+              </div>
+              <%= form_with model: @chat, data: {remote: true} do |f| %>
+                <div class="form-group d-flex justify-content-between">
+                  <%= f.text_field :message, class: "form-control" %>
+                  <div class="d-flex">
+                    <%= f.hidden_field :room_id %>
+                    <%= f.button "送信", class: "btn btn-primary flex-shrink-0" %>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-
-<div class="errors">
-  <%= render "layouts/errors", obj: @chat %>
-</div>
-
-<%= form_with model: @chat, data: {remote: true} do |f| %>
-  <%= f.text_field :message %>
-  <%= f.hidden_field :room_id %>
-<% end %>
