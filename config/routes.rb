@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'relationships/followings'
+  get 'relationships/followers'
   devise_for :customers,skip: [:passwords], controllers: {
   registrations: "public/registrations",
   sessions: 'public/sessions'
@@ -18,6 +20,12 @@ devise_scope :customer do
    resources :customers, only: [:index, :show, :edit, :update] do
     get "unsubscribe"
     patch "withdrawal"
+    resource :relationships, only: [:create, :destroy] do
+        collection do
+            get 'followings' => 'relationships#followings', as: 'followings'
+            get 'followers' => 'relationships#followers', as: 'followers'
+        end
+    end
   end
    resources :posts, only: [:new, :index, :show, :edit, :create, :update, :destroy] do
        resource :likes, only: [:create, :destroy]
@@ -27,6 +35,7 @@ devise_scope :customer do
     end
    end
    resources :categorys, only: [:index, :edit, :create, :update]
+   resources :chats, only: [:show, :create]
  end
 
   namespace :admin do

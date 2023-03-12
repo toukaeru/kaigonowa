@@ -1,18 +1,39 @@
 <div class ="col-md-3">
       <h2>ユーザー情報</h2>
-      <%= image_tag @customer.get_profile_image(100, 100) %>
+      <%= image_tag customer.get_profile_image(100, 100) %>
       <table class = "table">
         <tbody>
          <tr>
           <th>名前</th>
-          <th><%= @customer.name %></th>
+          <th><%= customer.name %></th>
          </tr>
          <tr>
            <th>紹介文</th>
-           <th><%= @customer.introduction %></th>
+           <th><%= customer.introduction %></th>
          </tr>
+         <tr>
+    <th>フォロー</th>
+    <th><%= link_to "#{customer.followings.count}", followings_customer_relationships_path(customer) %></th>
+  </tr>
+  <tr>
+    <th>フォロワー</th>
+    <th><%= link_to "#{customer.followers.count}",  followers_customer_relationships_path(customer) %></th>
+  </tr>
         </tbody>
       </table>
+      <div class ='row'>
+  <% if customer != current_customer %>
+    <% if current_customer.following?(customer) %>
+       <%= link_to "フォロー外す", customer_relationships_path(customer.id), method: :delete, class: "btn btn-sm btn-info" %>
+     <% else %>
+       <%= link_to "フォローする", customer_relationships_path(customer.id), method: :post, class: "btn btn-sm btn-success" %>
+    <% end %>
+   <% end %>
+   <% if current_customer != customer && current_customer.following?(customer) && customer.following?(current_customer) %>
+    <%= link_to 'チャットを始める', chat_path(customer.id), class: "ml-3" %>
+   <% end %>
+
+</div>
       <% if  @customer.name != "guestuser" %>
       <div class = "row">
        <%= link_to edit_customer_path(@customer.id), class: "btn btn-outline-secondary btn-block" do %>
