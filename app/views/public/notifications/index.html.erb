@@ -1,0 +1,16 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <h3 class="text-center mb-4">通知</h3>
+      <% if @notifications.exists? %>
+        <div class="list-group">
+          <%= render @notifications %>
+        </div>
+      <% else %>
+        <div class="alert alert-info" role="alert">
+          通知はありません
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

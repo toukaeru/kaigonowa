@@ -3,7 +3,7 @@
     <div class="col-sm-12 col-md-8 col-lg-5 px-sm-0 mx-auto">
       <h1>ユーザー情報</h1>
       <% if @customer.errors.any? %>
-         <%= @customer.errors.count %> error prohibited this obj from being saved:
+         <%= @customer.errors.count %>  件のエラーが発生しました。
          <ul>
           <% @customer.errors.full_messages.each do |message| %>
           <li><%= message %></li>

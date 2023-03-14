@@ -1,0 +1,14 @@
+ja:
+ activerecord:
+   attributes:
+     customer:
+       name: '名前'
+       introduction: '紹介文'
+       email: 'メールアドレス'
+       password: 'パスワード'
+     post:
+       title: 'タイトル'
+       content: '内容'
+       category: 'カテゴリ'
+     comment:
+      comment: 'コメント'

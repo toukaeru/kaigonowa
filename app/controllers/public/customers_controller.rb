@@ -38,7 +38,7 @@ class Public::CustomersController < ApplicationController
     flash[:notice] = "退会が完了しました！"
     redirect_to root_path
   end
-  
+
   def likes
     likes = Like.where(customer_id: @customer.id).pluck(:post_id)
     @like_posts = Post.find(likes)
@@ -56,7 +56,7 @@ class Public::CustomersController < ApplicationController
       redirect_to customer_path(current_customer.id)
     end
   end
-  
+
   def set_customer
     @customer = Customer.find(params[:id])
   end

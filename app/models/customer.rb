@@ -16,7 +16,15 @@ class Customer < ApplicationRecord
   has_many :followings, through: :relationships, source: :followed
   has_many :followers, through: :reverse_of_relationships, source: :follower
 
+  # 通知
+  has_many :active_notifications, class_name: "Notification", foreign_key: "visiter_id", dependent: :destroy
+  has_many :passive_notifications, class_name: "Notification", foreign_key: "visited_id", dependent: :destroy
+
   has_one_attached :profile_image
+
+  validates :name, presence: true, length: { minimum: 2, maximum: 20 }, uniqueness: true
+  validates :introduction, length: { maximum: 50 }
+
 
   def get_profile_image(width, height)
   unless profile_image.attached?
@@ -47,5 +55,17 @@ class Customer < ApplicationRecord
 
   def following?(user)
     followings.include?(user)
+  end
+   #フォロー時の通知
+  def create_notification_follow!(visited_id)
+    temp = Notification.where(["visiter_id = ? and visited_id = ? and action = ? ",id, visited_id, 'follow'])
+    if temp.blank?
+      notification = active_notifications.new(
+        visited_id: visited_id,
+        visiter_id: id,
+        action: 'follow'
+      )
+      notification.save if notification.valid?
+    end
   end
 end

@@ -39,6 +39,7 @@ devise_scope :customer do
    end
    resources :categorys, only: [:index, :edit, :create, :update]
    resources :chats, only: [:show, :create]
+   resources :notifications, only: [:index]
  end
 
   namespace :admin do

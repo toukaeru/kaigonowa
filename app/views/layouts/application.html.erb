@@ -25,6 +25,12 @@
             <% if customer_signed_in? %>
             </ul>
             <ul class="navbar-nav ml-auto">
+              <% if unchecked_notifications.any? %>
+               <i class="fa fa-circle" style="color: gold;"></i>
+              <% end %>
+             <li class="nav-item">
+               <%= link_to "通知", notifications_path,  class: 'btn btn-outline-dark' %>
+             </li>
              <li class="nav-item">
                <%= link_to 'マイページ', customer_path(current_customer.id), class: 'btn btn-outline-dark' %>
              </li>

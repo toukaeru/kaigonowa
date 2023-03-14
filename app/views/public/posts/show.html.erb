@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-8 mx-auto">
       <h1 class="my-4"><%= @post.title %></h1>
       <p>投稿者：<%= @post.customer.name %></p>
       <p>投稿日時：<%= @post.created_at.strftime("%Y/%m/%d %H:%M") %></p>
@@ -22,17 +22,20 @@
       <% end %>
 
       <br>
-      <p>コメント件数：<%= @post.comments.count %></p>
+      <p>コメント件数：<%= @post.comments.count %>件</p>
       <h2 class="my-4">コメント</h2>
 
-      <div id="comments">
+      <div id="comments" class="col-md-8 mx-auto text-right">
         <%= render @post.comments %>
       </div>
 
       <br>
+
       <%= form_with(url: post_comments_path(@post), model: [ @post, @post.comments.build ], remote: true) do |form| %>
         <%= form.text_area :content, class: "form-control mb-2", placeholder: "コメントを入力してください" %>
-        <%= form.submit "コメントを投稿", class: "btn btn-primary" %>
+        <div class="text-right">
+          <%= form.submit "コメントを投稿", class: "btn btn-primary" %>
+        </div>
       <% end %>
     </div>
   </div>
