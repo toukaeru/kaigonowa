@@ -1,6 +1,16 @@
-<% if notification.action == "comment" %>
-  <%= Customer.find(notification.visiter_id).name %>さんが<%= Customer.find(notification.visited_id).name %>の<%= link_to '投稿', post_path(notification.post_id) %>にコメントしました！
- 
-<% elsif notification.action == "follow" %>
-  <%= Customer.find(notification.visiter_id).name %>さんが<%= Customer.find(notification.visited_id).name %>をフォローしました！
-<% end %>
+<div class="row">
+  <div class="col-md-6">
+    <% if notification.action == "comment" %>
+      <div class="alert alert-primary" role="alert">
+        <%= Customer.find(notification.visiter_id).name %>さんが<%= Customer.find(notification.visited_id).name %>の<%= link_to '投稿', post_path(notification.post_id) %>にコメントしました！
+      </div>
+    <% end %>
+  </div>
+  <div class="col-md-6">
+    <% if notification.action == "follow" %>
+      <div class="alert alert-success" role="alert">
+        <%= Customer.find(notification.visiter_id).name %>さんが<%= Customer.find(notification.visited_id).name %>をフォローしました！
+      </div>
+    <% end %>
+  </div>
+</div>

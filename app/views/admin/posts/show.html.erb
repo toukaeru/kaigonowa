@@ -8,6 +8,7 @@
     </div>
     <div class="col-md-4">
       <h2>コメント一覧</h2>
+      <%= flash[:notice] %>
       <table class="table">
         <thead>
           <tr>
@@ -21,7 +22,7 @@
         <tbody>
           <% @post.comments.each do |comment| %>
             <tr>
-              <td><%= comment.customer.name %></td>
+              <td><%= link_to comment.customer.name,  admin_customer_path(comment.customer)%></td>
               <td><%= comment.comment %></td>
               <td>
                 <%= link_to '削除', admin_post_comment_path(comment.post, comment.id), method: :delete, data: { confirm: '削除してもよろしいですか?' }, class: 'btn btn-danger btn-sm' %>
