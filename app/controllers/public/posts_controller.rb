@@ -6,7 +6,7 @@ class Public::PostsController < ApplicationController
 
   def index
     @categorys = Category.all
-    @posts = Post.all
+    @posts = Post.page(params[:page]).per(6)
   end
 
   def show

@@ -3,13 +3,13 @@ class Public::CustomersController < ApplicationController
   before_action :set_customer, only: [:likes]
 
   def index
-    @customers = Customer.all
+    @customers = Customer.page(params[:page]).per(5)
     @customer = current_customer
   end
 
   def show
     @customer = Customer.find(params[:id])
-    @posts = @customer.posts
+    @posts = @customer.posts.page(params[:page]).per(10)
   end
 
   def edit

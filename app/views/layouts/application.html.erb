@@ -72,9 +72,16 @@
         </div>
       </nav>
       <div class="text-right">
+      <% if customer_signed_in? %>
        <%= form_tag search_posts_path, method: :get do %>
         <%= text_field_tag :keyword, params[:keyword], placeholder: "キーワードを入力してください", size: 30 %>
         <%= submit_tag "検索" %>
+       <% end %>
+       <% else admin_signed_in?%>
+       <%= form_tag search_admin_posts_path, method: :get do %>
+        <%= text_field_tag :keyword, params[:keyword], placeholder: "キーワードを入力してください", size: 30 %>
+        <%= submit_tag "検索" %>
+        <% end %>
        <% end %>
       </div>
     </header>

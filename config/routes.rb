@@ -48,6 +48,9 @@ devise_scope :customer do
     resources :customers, only: [:index, :show, :edit, :update]
     resources :posts, only: [:index, :show, :edit, :update, :destroy] do
      resources :comments, only: [:index, :show, :edit, :update, :destroy]
+     collection do
+       get 'search'
+      end
     end
     resources :categorys, only: [:index, :edit, :create, :update, :destroy]
   end

@@ -1,6 +1,6 @@
 class Admin::PostsController < ApplicationController
   def index
-    @posts = Post.all
+    @posts = Post.page(params[:page]).per(6)
   end
 
   def show
@@ -15,5 +15,12 @@ class Admin::PostsController < ApplicationController
   end
 
   def destroy
+   @post = Post.find(params[:id])
+   @post.destroy
+   redirect_to request.referer
+  end
+
+  def search
+   @posts = Post.search_by_keyword(params[:keyword])
   end
 end
