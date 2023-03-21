@@ -37,7 +37,7 @@ devise_scope :customer do
       get 'search'
     end
    end
-   resources :categorys, only: [:index, :edit, :create, :update]
+   resources :categorys, only: [:index, :edit, :create, :update, :destroy]
    resources :chats, only: [:show, :create]
    resources :notifications, only: [:index]
  end
