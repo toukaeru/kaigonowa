@@ -5,7 +5,7 @@ class Public::CategorysController < ApplicationController
       category = Category.find(params[:category_id])
       @posts = Post.where(category: category).page(params[:page]).per(6)
     else
-      @posts = Post.all
+      @posts = Post.page(params[:page]).per(6)
     end
   end
 
