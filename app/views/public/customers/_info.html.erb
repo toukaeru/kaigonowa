@@ -38,9 +38,9 @@
     <% end %>
   </div>
   <br>
-  <% if @customer.name != "guestuser" %>
+  <% if current_customer && customer.id == current_customer.id && customer.name != "guestuser" %>
     <div class="row">
-      <%= link_to edit_customer_path(@customer.id), class: "btn btn-outline-secondary btn-block" do %>
+      <%= link_to edit_customer_path(customer.id), class: "btn btn-outline-secondary btn-block" do %>
         <i class="fas fa-user-cog"></i>
       <% end %>
     </div>
