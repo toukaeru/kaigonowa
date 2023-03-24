@@ -44,9 +44,8 @@ devise_scope :customer do
 
   namespace :admin do
     root to:"customers#index"
-    resources :homes, only: [:top]
     resources :customers, only: [:index, :show, :edit, :update]
-    resources :posts, only: [:index, :show, :edit, :update, :destroy] do
+    resources :posts, only: [:index, :show, :update, :destroy] do
      resources :comments, only: [:index, :show, :edit, :update, :destroy]
      collection do
        get 'search'
