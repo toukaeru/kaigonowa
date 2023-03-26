@@ -1,5 +1,5 @@
 <p><strong><%= comment.customer.name %></strong></p>
-<p><%= comment.comment %></p>
+<p><%=safe_join(comment.comment.split("\n"),tag(:br))%></p>
 <% if comment.customer == current_customer %>
   <%= link_to "削除", post_comment_path(comment.post, comment), method: :delete %>
 <% end %>

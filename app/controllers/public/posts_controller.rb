@@ -32,7 +32,11 @@ class Public::PostsController < ApplicationController
   end
 
   def search
-   @posts = Post.search_by_keyword(params[:keyword])
+    if params[:keyword].present?
+      @posts = Post.search_by_keyword(params[:keyword])
+    else
+      @post = Post.none
+    end
   end
 
   private
