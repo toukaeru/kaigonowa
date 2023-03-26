@@ -24,6 +24,18 @@
 - 介護に関する知識やスキルアップのための情報を得るとき
 
 ## 設計書
+- テーブル定義書
+https://docs.google.com/spreadsheets/d/1xEVvqu6ZiwbaNcOrt7XS--Lz4l1SFqlqls55lLFdHas/edit#gid=1373217982
+- 機能一覧
+https://app.diagrams.net/#G1dH-RURq0ldn67U_jrn2VlD3q8X4aHobC
+- UIフロー
+https://app.diagrams.net/#G1SlfEbCbyrjQNF8PTGPbgcZCeAv_GYUV7
+- ワイヤーフレーム
+https://app.diagrams.net/#G15qSHsAaOd1v8JDPwXTV5lStMrWBc444J
+- ER図
+https://app.diagrams.net/#G1AaVXprpr_A7vkZLvk9RsSWs9psi9UFMg
+- テスト仕様書
+https://docs.google.com/spreadsheets/d/15wVCPvhsC02eKzue0f7CqCliyKQWRb6-/edit#gid=1217357992
 
 
 ## 開発環境
@@ -34,4 +46,7 @@
 - IDE：Cloud9
 
 ## 使用素材
-仕様検討中です
+- photoAC
+https://www.photo-ac.com/
+- adobe
+https://www.adobe.com/jp/express/create/logo
