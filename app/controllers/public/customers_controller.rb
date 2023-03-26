@@ -1,6 +1,7 @@
 class Public::CustomersController < ApplicationController
   before_action :is_matching_login_customer, only: [:edit, :update]
   before_action :set_customer, only: [:likes]
+  before_action :authenticate_customer!
 
   def index
     @customers = Customer.page(params[:page]).per(5)

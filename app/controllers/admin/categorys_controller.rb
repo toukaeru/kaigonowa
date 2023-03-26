@@ -1,4 +1,5 @@
 class Admin::CategorysController < ApplicationController
+
   def index
     @category = Category.new
     @categorys = Category.page(params[:page]).per(5)
