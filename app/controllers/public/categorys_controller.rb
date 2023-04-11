@@ -1,4 +1,5 @@
 class Public::CategorysController < ApplicationController
+  
   def index
     @categorys = Category.all
     if params[:category_id].present?
