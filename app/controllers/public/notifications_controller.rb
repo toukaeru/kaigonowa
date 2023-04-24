@@ -1,5 +1,6 @@
 class Public::NotificationsController < ApplicationController
   after_action :read_notification, only: :index
+  
   def index
     	@notifications = current_customer.passive_notifications.where(checked: false)
   end
